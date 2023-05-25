@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,13 @@ Route::post('register', [UserController::class, 'register']);
 
 // User Login
 Route::post('login', [UserController::class, 'login']);
+
+// Fetch News API
+Route::get('news-api-headline', [NewsController::class, 'fetchNewsApiHeadline']);
+Route::get('news-api-filter', [NewsController::class, 'fetchNewsApiFilter']);
+
+// Fetch The Guardian API
+Route::get('guardian', [NewsController::class, 'fetchGuardianApi']);
+
+// Fetch New York Times API
+Route::get('nyt-home', [NewsController::class, 'fetchNYTApiHome']);
