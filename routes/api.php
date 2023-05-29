@@ -31,7 +31,9 @@ Route::get('news-api-headline', [NewsController::class, 'fetchNewsApiHeadline'])
 Route::get('news-api-filter', [NewsController::class, 'fetchNewsApiFilter']);
 
 // Fetch The Guardian API
-Route::get('guardian', [NewsController::class, 'fetchGuardianApi']);
+Route::get('guardian-home', [NewsController::class, 'fetchGuardianApiHome']);
+Route::get('guardian-filter', [NewsController::class, 'fetchGuardianApiFilter']);
 
 // Fetch New York Times API
 Route::get('nyt-home', [NewsController::class, 'fetchNYTApiHome']);
+Route::get('nyt-filter', [NewsController::class, 'fetchNYTApiFilter']);
