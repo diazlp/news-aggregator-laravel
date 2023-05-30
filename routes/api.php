@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserSourcesPreferencesController;
 use App\Http\Controllers\UserCategoriesPreferencesController;
+use App\Http\Controllers\UserAuthorsPreferencesController;
+use App\Http\Controllers\UserSourcesPreferencesController;
 use App\Http\Controllers\NewsController;
 
 /*
@@ -40,6 +41,20 @@ Route::get('guardian-filter', [NewsController::class, 'fetchGuardianApiFilter'])
 Route::get('nyt-home', [NewsController::class, 'fetchNYTApiHome']);
 Route::get('nyt-filter', [NewsController::class, 'fetchNYTApiFilter']);
 
+// User Category Preferences
+Route::prefix('user-categories-preferences')->group(function () {
+    Route::post('/', [UserCategoriesPreferencesController::class, 'store']);
+    Route::get('/', [UserCategoriesPreferencesController::class, 'show']);
+    Route::delete('/', [UserCategoriesPreferencesController::class, 'destroy']);
+});
+
+// User Author Preferences
+Route::prefix('user-authors-preferences')->group(function () {
+    Route::post('/', [UserAuthorsPreferencesController::class, 'store']);
+    Route::get('/', [UserAuthorsPreferencesController::class, 'show']);
+    Route::delete('/', [UserAuthorsPreferencesController::class, 'destroy']);
+});
+
 // User Source Preferences
 Route::prefix('user-sources-preferences')->group(function () {
     Route::post('/', [UserSourcesPreferencesController::class, 'store']);
@@ -47,9 +62,3 @@ Route::prefix('user-sources-preferences')->group(function () {
     Route::delete('/', [UserSourcesPreferencesController::class, 'destroy']);
 });
 
-// User Category Preferences
-Route::prefix('user-categories-preferences')->group(function () {
-    Route::post('/', [UserCategoriesPreferencesController::class, 'store']);
-    Route::get('/', [UserCategoriesPreferencesController::class, 'show']);
-    Route::delete('/', [UserCategoriesPreferencesController::class, 'destroy']);
-});
