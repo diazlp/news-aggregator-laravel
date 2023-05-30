@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSourcesPreferencesController;
+use App\Http\Controllers\UserCategoriesPreferencesController;
 use App\Http\Controllers\NewsController;
 
 /*
@@ -44,4 +45,11 @@ Route::prefix('user-sources-preferences')->group(function () {
     Route::post('/', [UserSourcesPreferencesController::class, 'store']);
     Route::get('/', [UserSourcesPreferencesController::class, 'show']);
     Route::delete('/', [UserSourcesPreferencesController::class, 'destroy']);
+});
+
+// User Category Preferences
+Route::prefix('user-categories-preferences')->group(function () {
+    Route::post('/', [UserCategoriesPreferencesController::class, 'store']);
+    Route::get('/', [UserCategoriesPreferencesController::class, 'show']);
+    Route::delete('/', [UserCategoriesPreferencesController::class, 'destroy']);
 });
