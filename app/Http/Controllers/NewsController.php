@@ -34,7 +34,7 @@ class NewsController extends Controller
         $news = $filteredArticles->map(function ($article) {
             return [
                 'title' => strpos($article['title'], '-') !== false ? trim(substr($article['title'], 0, strrpos($article['title'], '-'))): $article['title'],
-                'source' => 'News API',
+                'source' => 'NewsAPI',
                 'author' => $article['author'],
                 'description' => $article['description'],
                 'url' => $article['url'],
@@ -74,7 +74,7 @@ class NewsController extends Controller
         $news = $filteredArticles->map(function ($article) {
             return [
                 'title' => strpos($article['title'], '-') !== false ? trim(substr($article['title'], 0, strrpos($article['title'], '-'))): $article['title'],
-                'source' => 'News API',
+                'source' => 'NewsAPI',
                 'author' => $article['author'],
                 'description' => $article['description'],
                 'url' => $article['url'],
