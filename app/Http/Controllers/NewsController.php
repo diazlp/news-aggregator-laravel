@@ -13,7 +13,7 @@ class NewsController extends Controller
         $query = $request->query();
 
         // Construct the NewsAPI URL with query parameters
-        $url = 'https://newsapi.org/v2/top-headlines?country=us&sortBy=popularity&' . http_build_query($query + ['apiKey' => config('services.news_api.key')]);
+        $url = 'https://newsapi.org/v2/top-headlines?country=us&sortBy=popularity&pageSize=70&' . http_build_query($query + ['apiKey' => config('services.news_api.key')]);
 
         // Make the HTTP request to the NewsAPI
         $response = Http::get($url);
@@ -93,7 +93,7 @@ class NewsController extends Controller
         $query = $request->query();
 
         // Construct the The Guardian API URL with query parameters
-        $url = 'https://content.guardianapis.com/search?show-fields=thumbnail,trailText&page-size=100&' . http_build_query($query + ['api-key' => config('services.guardian_api.key')]);
+        $url = 'https://content.guardianapis.com/search?show-fields=thumbnail,trailText&page-size=150&' . http_build_query($query + ['api-key' => config('services.guardian_api.key')]);
         
         // Make the HTTP request to the The Guardian API
         $response = Http::get($url);

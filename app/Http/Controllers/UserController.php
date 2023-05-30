@@ -10,13 +10,11 @@ class UserController extends Controller
 {
     public function register(Request $request) {
         $request->validate([
-            'fullName' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:6'
         ]);
 
         $user = User::create([
-            'fullName' => $request->fullName,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
