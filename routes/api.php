@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSourcesPreferencesController;
 use App\Http\Controllers\NewsController;
 
 /*
@@ -37,3 +38,12 @@ Route::get('guardian-filter', [NewsController::class, 'fetchGuardianApiFilter'])
 // Fetch New York Times API
 Route::get('nyt-home', [NewsController::class, 'fetchNYTApiHome']);
 Route::get('nyt-filter', [NewsController::class, 'fetchNYTApiFilter']);
+
+// User Source Preferences
+Route::prefix('user-sources-preferences')->group(function () {
+    Route::get('/', [UserSourcesPreferencesController::class, 'index']);
+    Route::post('/', [UserSourcesPreferencesController::class, 'store']);
+    Route::get('/{id}', [UserSourcesPreferencesController::class, 'show']);
+    Route::put('/{id}', [UserSourcesPreferencesController::class, 'update']);
+    Route::delete('/{id}', [UserSourcesPreferencesController::class, 'destroy']);
+});
