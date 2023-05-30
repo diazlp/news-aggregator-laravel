@@ -16,21 +16,24 @@ return new class extends Migration
         Schema::create('user_sources_preferences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('source');
+            $table->string('value');
+            $table->string('label');
             $table->timestamps();
         });
 
         Schema::create('user_authors_preferences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('author');
+            $table->string('value');
+            $table->string('label');
             $table->timestamps();
         });
 
         Schema::create('user_categories_preferences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('category');
+            $table->string('value');
+            $table->string('label');
             $table->timestamps();
         });
 

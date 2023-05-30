@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class UserSourcesPreferencesController extends Controller
 {
-    public function index()
+    public function show(Request $request)
     {
-        // Retrieve all user sources preferences
-        $preferences = UserSourcesPreferences::all();
+        $userId = $request->query('user_id');
+    
+       // Retrieve the "value" and "label" fields from user sources preferences by user_id
+        $preferences = UserSourcesPreferences::where('user_id', $userId)
+        ->get(['value', 'label']);
+
         return response()->json($preferences);
     }
 
@@ -19,7 +23,8 @@ class UserSourcesPreferencesController extends Controller
         // Validate the request data
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'source' => 'required',
+            'value' => 'required',
+            'label' => 'required',
         ]);
 
         // Create a new user sources preference
@@ -27,32 +32,18 @@ class UserSourcesPreferencesController extends Controller
         return response()->json($preference, 201);
     }
 
-    public function show($id)
+    public function destroy(Request $request)
     {
-        // Retrieve a specific user sources preference by ID
-        $preference = UserSourcesPreferences::findOrFail($id);
-        return response()->json($preference);
-    }
+        $userId = $request->query('user_id');
+        $source = $request->query('value');
 
-    public function update(Request $request, $id)
-    {
-        // Validate the request data
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'source' => 'required',
-        ]);
+        // Find and delete the user sources preference by user_id and source
+        $preference = UserSourcesPreferences::where('user_id', $userId)
+            ->where('value', $source)
+            ->firstOrFail();
 
-        // Update the user sources preference
-        $preference = UserSourcesPreferences::findOrFail($id);
-        $preference->update($request->all());
-        return response()->json($preference);
-    }
-
-    public function destroy($id)
-    {
-        // Delete a user sources preference
-        $preference = UserSourcesPreferences::findOrFail($id);
         $preference->delete();
-        return response()->json(null, 204);
+
+        return response()->json($preference, 200);
     }
 }

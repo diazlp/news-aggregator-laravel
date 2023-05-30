@@ -13,7 +13,8 @@ class UserSourcesPreferences extends Model
 
     protected $fillable = [
         'user_id',
-        'source',
+        'value',
+        'label'
     ];
 
     public function user()
